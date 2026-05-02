@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ownership Structures | Keyur</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+      background: black;
+      color: white;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 80px;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    p, li {
+      font-size: 24px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: fadeUp 0.7s forwards;
+    }
+
+    li:nth-child(1) { animation-delay: 0.2s; }
+    li:nth-child(2) { animation-delay: 0.4s; }
+    li:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bg1 { background: radial-gradient(circle at top, #1a1a2e, #000); }
+    .bg2 { background: radial-gradient(circle at center, #16213e, #000); }
+    .bg3 { background: radial-gradient(circle at bottom, #0f3460, #000); }
+
+    /* Progress bar */
+    #progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: #00c6ff;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* Slide counter */
+    #counter {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* Click zones */
+    .zone {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      z-index: 10;
+    }
+
+    #leftZone { left: 0; }
+    #rightZone { right: 0; }
+
+  </style>
+</head>
+<body>
+
+<div class="zone" id="leftZone"></div>
+<div class="zone" id="rightZone"></div>
+
+<div id="progress"></div>
+<div id="counter"></div>
+
+<div class="slide active bg1">
+  <h1>Ownership Structures</h1>
+  <p>Name: keyur sushrut madavi </p>
+  <p>Class: IX B</p>
+  <p>School: St. Jhon's High School</p>
+</div>
+
+<div class="slide bg2">
+  <h1>Introduction</h1>
+  <p>Ownership structure defines who owns and controls a business.</p>
+</div>
+
+<div class="slide bg3">
+  <h1>Sole Proprietorship</h1>
+  <ul>
+    <li>Owned by one person</li>
+    <li>Easy to start</li>
+    <li>Full control</li>
+  </ul>
+</div>
+
+<div class="slide bg2">
+  <h1>Joint Hindu Family Business</h1>
+  <ul>
+    <li>Owned by family</li>
+    <li>Managed by Karta</li>
+    <li>Traditional system</li>
+  </ul>
+</div>
+
+<div class="slide bg3">
+  <h1>Partnership</h1>
+  <ul>
+    <li>Two or more owners</li>
+    <li>Shared profits</li>
+    <li>Agreement required</li>
+  </ul>
+</div>
+
+<div class="slide bg2">
+  <h1>Co-operative Society</h1>
+  <ul>
+    <li>Owned by members</li>
+    <li>Equal rights</li>
+    <li>Service motive</li>
+  </ul>
+</div>
+
+<div class="slide bg3">
+  <h1>Joint Stock Company</h1>
+  <ul>
+    <li>Owned by shareholders</li>
+    <li>Separate legal entity</li>
+    <li>Large scale business</li>
+  </ul>
+</div>
+
+<div class="slide bg2">
+  <h1>Comparison</h1>
+  <ul>
+    <li>Sole → Single owner</li>
+    <li>Partnership → Shared</li>
+    <li>Company → Shareholders</li>
+  </ul>
+</div>
+
+<div class="slide bg1">
+  <h1>Conclusion</h1>
+  <p>Different ownership structures suit different business needs.</p>
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let current = 0;
+let progress = document.getElementById("progress");
+let counter = document.getElementById("counter");
+
+// Update UI
+function updateUI() {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[current].classList.add("active");
+
+  let percent = ((current + 1) / slides.length) * 100;
+  progress.style.width = percent + "%";
+
+  counter.textContent = (current + 1) + " / " + slides.length;
+}
+
+// Navigation
+function nextSlide() {
+  if (current < slides.length - 1) current++;
+  updateUI();
+}
+
+function prevSlide() {
+  if (current > 0) current--;
+  updateUI();
+}
+
+// Click zones
+document.getElementById("rightZone").onclick = nextSlide;
+document.getElementById("leftZone").onclick = prevSlide;
+
+// Keyboard
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") nextSlide();
+  if (e.key === "ArrowLeft") prevSlide();
+});
+
+// Touch swipe
+let startX = 0;
+
+document.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextSlide();
+  if (endX - startX > 50) prevSlide();
+});
+
+// Init
+updateUI();
+</script>
+
+</body>
+</html>
