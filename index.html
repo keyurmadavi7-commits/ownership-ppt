@@ -10,16 +10,47 @@
       background: black;
       color: white;
     }
-     .glass {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 30px;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    max-width: 700px;
-  }    
+    #intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1.5s ease;
+}
+
+#introText {
+  font-size: 50px;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: introFade 2s forwards;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@keyframes introFade {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      max-width: 700px;
+    }
 
     .slide {
       position: absolute;
@@ -27,6 +58,9 @@
       height: 100%;
       padding: 80px;
       box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
       transform: scale(1.1);
       transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -38,37 +72,22 @@
     }
 
     h1 {
-      font-size: 56px;
-      margin-bottom: 20px;
+      font-size: 48px;
+      margin-bottom: 15px;
       background: linear-gradient(90deg, #00c6ff, #0072ff);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     p, li {
-      font-size: 24px;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(25px);
-      animation: fadeUp 0.7s forwards;
-    }
-
-    li:nth-child(1) { animation-delay: 0.2s; }
-    li:nth-child(2) { animation-delay: 0.4s; }
-    li:nth-child(3) { animation-delay: 0.6s; }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      font-size: 22px;
+      line-height: 1.5;
     }
 
     .bg1 { background: radial-gradient(circle at top, #1a1a2e, #000); }
     .bg2 { background: radial-gradient(circle at center, #16213e, #000); }
     .bg3 { background: radial-gradient(circle at bottom, #0f3460, #000); }
 
-    /* Progress bar */
     #progress {
       position: fixed;
       bottom: 0;
@@ -79,7 +98,6 @@
       transition: width 0.5s ease;
     }
 
-    /* Slide counter */
     #counter {
       position: fixed;
       bottom: 10px;
@@ -88,7 +106,6 @@
       opacity: 0.7;
     }
 
-    /* Click zones */
     .zone {
       position: fixed;
       top: 0;
@@ -100,9 +117,31 @@
     #leftZone { left: 0; }
     #rightZone { right: 0; }
 
+    /* 🎵 Music button */
+    #musicBtn {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
   </style>
 </head>
 <body>
+<div id="intro">
+  <h1 id="introText">Ownership Structures</h1>
+</div>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">🔊</button>
 
 <div class="zone" id="leftZone"></div>
 <div class="zone" id="rightZone"></div>
@@ -110,84 +149,134 @@
 <div id="progress"></div>
 <div id="counter"></div>
 
+<!-- Slides -->
+
 <div class="slide active bg1">
-  <h1>Ownership Structures</h1>
-  <p>Name: keyur sushrut madavi </p>
-  <p>Class: IX B</p>
-  <p>School: St. Jhon's High School</p>
+  <div class="glass">
+    <h1>Ownership Structures</h1>
+    <p>Name: Keyur Sushrut Madavi</p>
+    <p>Class: IX B</p>
+    <p>School: St. John's High School</p>
+  </div>
 </div>
 
 <div class="slide bg2">
-  <h1>Introduction</h1>
-  <p>Ownership structure defines who owns and controls a business.</p>
+  <div class="glass">
+    <h1>Introduction</h1>
+    <p>
+Ownership structure refers to the way a business is owned and controlled. 
+It determines who makes decisions, who earns profits, and how responsibilities are shared. 
+Different ownership structures suit different types of businesses.
+</p>
+  </div>
 </div>
 
 <div class="slide bg3">
-  <h1>Sole Proprietorship</h1>
-  <ul>
-    <li>Owned by one person</li>
-    <li>Easy to start</li>
-    <li>Full control</li>
-  </ul>
+  <div class="glass">
+    <h1>Sole Proprietorship</h1>
+    <ul>
+<p>
+Ownership structure refers to the way a business is owned and controlled. 
+It determines who makes decisions, who earns profits, and how responsibilities are shared. 
+Different ownership structures suit different types of businesses.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg2">
-  <h1>Joint Hindu Family Business</h1>
-  <ul>
-    <li>Owned by family</li>
-    <li>Managed by Karta</li>
-    <li>Traditional system</li>
-  </ul>
+  <div class="glass">
+    <h1>Joint Hindu Family Business</h1>
+    <ul>
+<p>
+A Joint Hindu Family Business is owned by members of a Hindu family and managed by the eldest member, known as the Karta. 
+It follows traditional practices and is based on family ownership. 
+All members share profits, but the Karta takes major decisions.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg3">
-  <h1>Partnership</h1>
-  <ul>
-    <li>Two or more owners</li>
-    <li>Shared profits</li>
-    <li>Agreement required</li>
-  </ul>
+  <div class="glass">
+    <h1>Partnership</h1>
+    <ul>
+<p>
+A partnership is a business owned by two or more people who agree to share profits and losses. 
+It is formed through a partnership agreement. 
+Partners contribute capital, skills, and share responsibilities in running the business.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg2">
-  <h1>Co-operative Society</h1>
-  <ul>
-    <li>Owned by members</li>
-    <li>Equal rights</li>
-    <li>Service motive</li>
-  </ul>
+  <div class="glass">
+    <h1>Co-operative Society</h1>
+    <ul>
+<p>
+A co-operative society is formed by a group of people to meet common needs. 
+It is based on the principle of equality, where each member has equal rights. 
+Its main aim is service rather than profit.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg3">
-  <h1>Joint Stock Company</h1>
-  <ul>
-    <li>Owned by shareholders</li>
-    <li>Separate legal entity</li>
-    <li>Large scale business</li>
-  </ul>
+  <div class="glass">
+    <h1>Joint Stock Company</h1>
+    <ul>
+<p>
+A joint stock company is a large business owned by shareholders. 
+It has a separate legal identity from its owners. 
+It can raise large capital and is suitable for large-scale operations.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg2">
-  <h1>Comparison</h1>
-  <ul>
-    <li>Sole → Single owner</li>
-    <li>Partnership → Shared</li>
-    <li>Company → Shareholders</li>
-  </ul>
+  <div class="glass">
+    <h1>Comparison</h1>
+    <ul>
+<p>
+Different ownership structures vary in size, control, and purpose. 
+Sole proprietorship is simple, partnership involves shared responsibility, and companies are large and complex. 
+Each structure is suitable for different business needs.
+</p>
+    </ul>
+  </div>
 </div>
 
 <div class="slide bg1">
-  <h1>Conclusion</h1>
-  <p>Different ownership structures suit different business needs.</p>
+  <div class="glass">
+    <h1>Conclusion</h1>
+  <p>
+Ownership structures play a vital role in business success. 
+Choosing the right structure helps in efficient management and growth. 
+Each type has its own advantages depending on the situation.
+</p>
+  </div>
 </div>
 
 <script>
+  // Cinematic intro timing
+setTimeout(() => {
+  let intro = document.getElementById("intro");
+  intro.style.opacity = "0";
+
+  setTimeout(() => {
+    intro.style.display = "none";
+  }, 1500);
+}, 3000);
 let slides = document.querySelectorAll(".slide");
 let current = 0;
 let progress = document.getElementById("progress");
 let counter = document.getElementById("counter");
+let music = document.getElementById("bgMusic");
+let btn = document.getElementById("musicBtn");
 
-// Update UI
 function updateUI() {
   slides.forEach(s => s.classList.remove("active"));
   slides[current].classList.add("active");
@@ -198,7 +287,6 @@ function updateUI() {
   counter.textContent = (current + 1) + " / " + slides.length;
 }
 
-// Navigation
 function nextSlide() {
   if (current < slides.length - 1) current++;
   updateUI();
@@ -209,30 +297,42 @@ function prevSlide() {
   updateUI();
 }
 
-// Click zones
+// Navigation
 document.getElementById("rightZone").onclick = nextSlide;
 document.getElementById("leftZone").onclick = prevSlide;
 
-// Keyboard
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") nextSlide();
   if (e.key === "ArrowLeft") prevSlide();
 });
 
-// Touch swipe
+// Touch
 let startX = 0;
-
 document.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
 });
-
 document.addEventListener("touchend", (e) => {
   let endX = e.changedTouches[0].clientX;
   if (startX - endX > 50) nextSlide();
   if (endX - startX > 50) prevSlide();
 });
 
-// Init
+// 🎵 Music control
+document.addEventListener("click", () => {
+  music.volume = 0.15;
+  music.play();
+}, { once: true });
+
+btn.onclick = () => {
+  if (music.paused) {
+    music.play();
+    btn.textContent = "🔊";
+  } else {
+    music.pause();
+    btn.textContent = "🔇";
+  }
+};
+
 updateUI();
 </script>
 
